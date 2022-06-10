@@ -14,3 +14,11 @@ repos:
     rev: v1.6.0  # Use the sha / tag you want to point at
     hooks:
     -   id: autopep8
+-   repo: local
+    hooks:
+      - id: pytest-check
+        name: pytest-check
+        entry: pytest
+        language: system
+        pass_filenames: false
+        always_run: true

@@ -13,7 +13,7 @@ pip install -r requirements.txt
 Start WEB Application
 
 ```shell
-uvicorn main:app --reload
+uvicorn app.main:app --reload
 ```
 
 Start with docker-compose
