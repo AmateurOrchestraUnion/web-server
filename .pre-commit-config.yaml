@@ -5,7 +5,7 @@ ci:
         for more information, see https://pre-commit.ci
   autofix_prs: true
   skip:
-    - "pytest-check"
+    - "django-test"
 
 # See https://pre-commit.com for more information
 # See https://pre-commit.com/hooks.html for more hooks
@@ -20,16 +20,18 @@ repos:
     -   id: detect-private-key
     -   id: requirements-txt-fixer
     -   id: no-commit-to-branch
-    args: [--branch, master, --pattern, release/.*]
+        args: [--branch, master, --pattern, release/.*]
+    -   id: name-tests-test
+        args: [ "--django" ]
 -   repo: https://github.com/pre-commit/mirrors-autopep8
     rev: v1.6.0  # Use the sha / tag you want to point at
     hooks:
     -   id: autopep8
 -   repo: local
     hooks:
-      - id: pytest-check
-        name: pytest-check
-        entry: pytest
-        language: system
-        pass_filenames: false
+    -   id: django-test
+        name: django-test
+        entry: python app/manage.py test
         always_run: true
+        pass_filenames: false
+        language: system
