@@ -26,6 +26,7 @@ USER appuser
 
 RUN python manage.py collectstatic
 
-COPY docker-entrypoint.sh .
+COPY --chown=appuser docker-entrypoint.sh .
+RUN chmod +x docker-entrypoint.sh
 
 ENTRYPOINT [ "./docker-entrypoint.sh" ]
