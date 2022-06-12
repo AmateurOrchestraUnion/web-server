@@ -10,7 +10,7 @@ ENV PYTHONDONTWRITEBYTECODE=1
 # Turns off buffering for easier container logging
 ENV PYTHONUNBUFFERED=1
 
-RUN apt-get update && apt-get -y install gcc
+RUN apt-get update && apt-get -y install gcc default-libmysqlclient-dev build-essential
 
 # Install pip requirements
 COPY requirements.txt .
@@ -23,3 +23,9 @@ COPY ./app /app
 # For more info, please refer to https://aka.ms/vscode-docker-python-configure-containers
 RUN adduser -u 5678 --disabled-password --gecos "" appuser && chown -R appuser /app
 USER appuser
+
+RUN python manage.py collectstatic
+
+COPY docker-entrypoint.sh .
+
+ENTRYPOINT [ "./docker-entrypoint.sh" ]
