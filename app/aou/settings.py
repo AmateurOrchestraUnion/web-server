@@ -33,6 +33,7 @@ ALLOWED_HOSTS = hosts.split(',') if hosts is not None else []
 # Application definition
 
 INSTALLED_APPS = [
+    'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -131,3 +132,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, STATIC_URL)
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CSRF_TRUSTED_ORIGINS = [os.getenv('DJANGO_CSRF_TRUSTED_ORIGINS')]
+
+JAZZMIN_SETTINGS = {}
+
+JAZZMIN_SETTINGS["show_ui_builder"] = True
